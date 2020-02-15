@@ -6,8 +6,8 @@
 #define IS_SET_ANY(v, mask) (v & (mask))
 #define IS_CLEAR_ANY(v, mask) (v & ~(mask))
 #define BIT_MASK(len) (BIT(len)-1)
-#define BF_MASK(start, len) ((BIT_MASK(len) << start -len))
-#define BF_PREP(x, start, len) (BF_MASK(start, len) | x)
+#define BF_MASK(start, len) ((BIT_MASK(len) << start))
+#define BF_PREP(x, start, len) ((x) & BIT_MASK(len) << start)
 
 //char[] val = {'z','z','z','z','x','x','x','y','y','y','y','\0'};
 
@@ -65,7 +65,7 @@ int main(){
 	print_in_binary(BIT_SET((v), BIT(10)));
 	print_in_binary(BIT_CLEAR((v), BIT(10)));
 	print_in_binary(BIT_FLIP((v), BIT(2)));
-	print_in_binary(BF_MASK(31, 10));
-	print_in_binary(BF_PREP(7, 31, 10));
+	print_in_binary(BF_MASK(3, 4));
+	print_in_binary(BF_PREP(7, 3, 4));
 	return 0;
 }
